@@ -1,3 +1,4 @@
+MashupController.php
 inputChecked = null;
 $("document").ready(function(){
 	$("input[name=type]:radio").prop('checked', false);
