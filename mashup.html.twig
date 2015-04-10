@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets '@DBMashupBundle/Resources/public/css/mashup.css' %}
+		<link type="text/css" rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{# 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>#}
+	  
+	<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+	<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+	
+	{% javascripts '@DBMashupBundle/Resources/public/js/maps.js' %}
+		<script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+  
+{% endblock %}
+  
+{% block title %}Carte{% endblock %}
+
+		
+{% block main %}
+	<section>
+		<h3>Carte</h3>
+
+		<span id="response"></span>
+		
+		<div id="carte">
+			<div id="filtre">
+				<p>Quelle est la nature des éléments à afficher sur votre carte? </p>
+
+				<form action="" id="mainForm">
+					<div id="divConference"> 
+						<input type="radio" name="type" value="conference" id="inputConference">Éditions d'une conférence:
+					
+						<div id="infosConference">
+							<label for="nom">Nom de  la conférence:</label>
+							<input type="text" name="nom" id="nomConference" placeholder="Entrez le nom..." data-mini="false" data-clear-btn=true>
+						</div>
+					</div>
+					
+					<div id="divAuthor"> 
+						<input type="radio" name="type" value="author" id="inputAuthor">Publications d'un auteur:
+					
+						<div id="infosAuteur">
+							<label for="nom">Nom de  l'auteur:</label>
+							<input type="text" name="nomAuteur" id="nomAuteur" placeholder="Entrez le nom..." data-mini="false" data-clear-btn=true>
+							<label for="prenom">Prénom de l'auteur:</label>
+							<input type="text" name="prenomAuteur" id="prenomAuteur" placeholder="Entrez le prenom..." data-mini="false" data-clear-btn=true>
+						</div>
+					</div>
+					
+					<input type="button" id="submitCreateMap" value="Générer la carte">
+				</form>
+				<div id="title" class="centre hide">
+					<table class="centre">
+						<tr>
+							<td><img class="loader" src="http://www.fontsquirrel.com/presentation_20150320b/images/ajax_loader_blue_512.gif" alt="Chargement"></td>
+							<td><h3 id="propositions_title"></h3></td>
+							<td><img class="loader" src="http://www.fontsquirrel.com/presentation_20150320b/images/ajax_loader_blue_512.gif" alt="Chargement"></td>
+						</tr>
+					</table>
+				</div>
+				
+				<div id="propositions_body" class="hide">
+				</div>
+			</div>
+		</div>
+		
+	</section>
+{% endblock %}
